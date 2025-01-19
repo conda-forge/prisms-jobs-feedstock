@@ -16,15 +16,15 @@ build:
     - taskmaster=prisms_jobs.scripts.taskmaster:main
   noarch: python
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 2
 
 requirements:
   host:
-    - python >=3.7,<3.12
+    - python {{ python_min }}
     - pip
     - six
   run:
-    - python >=3.7,<3.12
+    - python >={{ python_min }},<3.12
     - future
     - six
 
@@ -38,6 +38,7 @@ test:
     - taskmaster --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://prisms-center.github.io/prisms_jobs_docs/
